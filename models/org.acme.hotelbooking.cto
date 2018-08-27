@@ -1,0 +1,96 @@
+namespace org.acme.hotelbooking
+
+enum Rating {
+        o five_star
+        o seven_star
+}
+
+enum Status{
+        o BOOKED
+        o AVAILABLE
+        o CANCELLED
+}
+
+enum Type{
+        o single
+        o double
+        o triple
+        o quad
+}
+
+concept Address{
+        o String  country
+        o String  city
+        o String  streetaddress
+}
+
+concept Birthdetails{
+        o DateTime Dob
+}
+
+
+
+participant Hotel identified by name{
+        o String name
+        o Integer no_of_rooms
+        o Double balance
+        o Boolean Swimming_pool
+        o Boolean valet_car_parking
+        o Boolean wi_fiHigh_speed_internet
+        o Boolean Fitness_center
+        o Rating rating
+        o Boolean Doctor_on_call
+}
+
+participant Client identified by ID{
+        o String ID
+        o String firstname
+        o String lastname
+        o Double balance
+        o String  phone_no
+        o Address address
+        o Birthdetails birthdetails
+}
+
+
+
+asset Room identified by iD {
+        o String iD
+        o Integer number
+        --> Hotel hotel
+        o Status status
+        o Double cost
+        o Type type
+}
+
+
+asset Order identified by orderID{
+        o String  orderID
+        --> Room room
+        o DateTime from
+        o DateTime to
+        --> Client client
+        o Integer no_of_days
+}
+
+
+transaction Bookroom{
+        o String  id
+        --> Room room
+        --> Client client
+        o DateTime from
+        o DateTime to
+        o Integer no_of_days
+       
+}
+
+transaction Cancelroom{
+        --> Room room
+        --> Client client
+        --> Order order
+}
+transaction Durationcomplete{
+        --> Room room
+        --> Order order
+}
+
