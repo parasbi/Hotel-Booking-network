@@ -13,7 +13,7 @@
 ### Transactions
 `Bookroom` `Cancelroom` `Durationcomplete`
 
-##Example use of this business network
+## Example use of this business network
 A `Client` uses the application run by a consortium of `Hotels` to book a `Room` in any 
 of the listed `Hotels`. The application submits a `BookRoom` transaction which creates a 
 new `Order` asset. The application also pays the amount to the `Hotel`. While looking for
